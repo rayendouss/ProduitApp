@@ -1,20 +1,23 @@
-import react , {Component} from "react"
+import react , {Component, useEffect} from "react"
 import { Button , Navbar , Nav ,NavDropdown , Form ,FormControl } from 'react-bootstrap'
 import { connect } from "react-redux"
 import axios from "axios"
+
 class Panier extends Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
         result:0,
-        token:localStorage.getItem('token')
+        token : 0
+     
         }
-      
+   console.log(this.props.panier)
     }
- 
+
     render(){
-        
+          
         const {panier} = this.props;
+   
      
 
     return (
@@ -32,12 +35,12 @@ class Panier extends Component{
         ) 
         })}
       
-        <NavDropdown.Item >Total= {this.state.result} DT</NavDropdown.Item> 
+        <NavDropdown.Item >Total= {this.state.result+(this.state.quantite*this.state.price)} DT</NavDropdown.Item> 
 
      
 
   <form method="post" action="https://sandbox.paymee.tn/gateway/">
-<input type="hidden" name="payment_token" value={this.state.token} />
+<input type="hidden" name="payment_token" value={localStorage.getItem("token")} />
 <input type="hidden" name="url_ok" value="https://example.com/ok.php"/>
 <input type="hidden" name="url_ko" value="https://example.com/ko.php"/>
 <button>Payer</button>

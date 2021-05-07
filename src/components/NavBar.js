@@ -1,7 +1,7 @@
 import react , {Component} from "react"
 import { Button , Navbar , Nav ,NavDropdown , Form ,FormControl } from 'react-bootstrap'
 import { connect } from "react-redux"
-import Panier from "./Panier"
+
 class NavBar extends Component{
 
     render(){
@@ -17,11 +17,7 @@ class NavBar extends Component{
   
    
     </Nav>
-    <Form inline style={{marginRight:"90px"}}>
    
-   <Panier />
-  
-    </Form>
   </Navbar.Collapse>
 </Navbar>
     ) }

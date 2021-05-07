@@ -1,18 +1,24 @@
+import { FETCH_PRODUCTS,ADD_PANIER} from "../types"
 const initState = {
-    products:[
-        {"id":1,"name":"Hoverboard" , "desc":  "Nouveau skate" ,"price":0.2,"image":"aa.jpg","quantite":1,"stock":10 },
-        {"id":2,"name":"Ball" , "desc":  "to playfootball" ,"price":0.1,"image":"bb.jpg" ,"quantite":1,"stock":5 }
-    ],
+    products:[],
     panier :[]
 }
 
 const rootReducer = (state=initState,action) => {
-    if(action.type ==="ADD_PANIER"){
-      let prodPan = [...state.panier, action.panier]  
+    if(action.type ===ADD_PANIER){
+       
+      let prodPan = [...state.panier, action.payload]  
     return {
         ...state,
         panier:prodPan
     }
+  
+    }else  if(action.type === FETCH_PRODUCTS){
+        console.log("here")
+        return {
+            ...state,
+            products:action.payload
+        }
     }
     return state
 }
